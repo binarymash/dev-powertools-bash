@@ -37,3 +37,20 @@ drm(){
 dbash(){
   winpty docker exec -it $1 bash
 }
+
+# list docker networks [filtered on pattern]
+# dn [<filterPattern>]
+dn(){
+  if [ $# -eq 0 ]; then
+    docker network ls
+  else
+    docker network ls | grep $1
+  fi
+}
+
+
+# inspect the specified docker network
+# dni <networkId>
+dni(){
+  docker network inspect $1
+}
