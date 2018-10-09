@@ -54,3 +54,18 @@ dn(){
 dni(){
   docker network inspect $1
 }
+
+
+di(){
+  if [ $# -eq 0 ]; then
+    docker images -a
+  else
+    docker images -a | grep $1
+  fi
+}
+
+# prune the system volumes
+# dprune
+dprune(){
+  docker system prune --volumes
+}
