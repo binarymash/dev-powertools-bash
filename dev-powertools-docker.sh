@@ -11,9 +11,13 @@ dps(){
 }
 
 # show logs for the specified container
-# dl <containerId>
+# dl <containerId> [<filterPattern>]
 dl(){
-  docker logs $1
+  if [ $# -eq 2 ]; then
+    docker logs $1 | sed 's/\\n/\n/g' | grep $2 
+  else
+    docker logs $1 | sed 's/\\n/\n/g'
+  fi
 }
 
 # show and follow logs for the specified container
@@ -68,10 +72,4 @@ di(){
 # dprune
 dprune(){
   docker system prune --volumes
-}
-
-# start container
-# ds <containerId>
-ds(){
-  docker start $1
 }
