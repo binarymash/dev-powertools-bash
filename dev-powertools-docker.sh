@@ -73,3 +73,8 @@ di(){
 dprune(){
   docker system prune --volumes
 }
+# start container
+# ds <containerId>
+ds(){
+  docker start $1
+}
